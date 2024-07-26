@@ -36,7 +36,7 @@ def make_prediction_before_tuning(data: pd.DataFrame) -> str:
     return "Submission file created successfully."
 
 
-def make_prediction(data: pd.DataFrame) -> pd.DataFrame:
+def make_predictions(data: pd.DataFrame) -> pd.DataFrame:
     cols, standard, model = load_pkls()
 
     ids = data['Id']
@@ -49,7 +49,7 @@ def make_prediction(data: pd.DataFrame) -> pd.DataFrame:
 
     y_pred = model.predict(df_test)
     submission_df = pd.DataFrame({'Id': ids, 'SalePrice': y_pred})
-    submission_df.to_csv('../data/house-prices-advanced-regression-techniques/submission.csv', index=False)
+    submission_df.to_csv(DATA_PATH + 'submission.csv', index=False)
     clear_output(wait=False)
     print("Submission file created successfully.")
 

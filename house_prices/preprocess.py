@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import OrdinalEncoder, StandardScaler, MinMaxScaler
 from sklearn.model_selection import train_test_split
-from joblib import dump
+from joblib import dump, load
 from typing import Union, Tuple
 
 
@@ -47,3 +47,19 @@ def standardizing(X_train: pd.DataFrame, X_test: pd.DataFrame, scaler: ScalerTyp
     dump(scaler, MODEL_PATH + 'standard_scaler.pkl')
 
     return X_train, X_test
+
+
+def encode_and_update(data: pd.DataFrame, ordinal_path: str) -> OrdinalEncoder:
+    ordinal = load(ordinal_path)
+    categorical_columns = data.select_dtypes(include=['object']).columns
+
+    for index, col in enumerate(categorical_columns):
+        unique_items = set(data[col])
+        known_items = set(ordinal.categories_[index])
+        new_items = unique_items - known_items
+
+        if new_items:
+            ordinal.categories_[index] = np.append(ordinal.categories_[index], list(new_items))
+
+    dump(ordinal, MODEL_PATH + 'ordinal_encoder.pkl')
+    return ordinal
