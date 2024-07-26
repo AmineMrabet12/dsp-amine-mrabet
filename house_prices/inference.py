@@ -9,7 +9,7 @@ from house_prices.preprocess import encode_and_update
 
 ScalerType = Union[StandardScaler, MinMaxScaler]
 MODEL_PATH = '../models/'
-DATA_PATH = '../data/house-prices-advanced-regression-techniques/'
+DATA_PATH = '../data/'
 
 
 def load_pkls() -> Tuple[pd.Index, ScalerType, xgb.XGBRegressor]:
