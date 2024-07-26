@@ -5,7 +5,7 @@ __pycache__/
 
 # Data folder
 data/
-
+setup.cfg
 # C extensions
 *.so
 
