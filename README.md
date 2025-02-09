@@ -21,6 +21,6 @@
     pip install -r requirements.txt
     ```
 
-## Runiing the code
+## Running the code
 
 To run the Code you need to access `notebooks/` folder then run `model-industrialisation-final.ipynb`notebook.
